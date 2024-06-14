@@ -1,32 +1,69 @@
-\documentclass[t,dvipsnames]{beamer}
-\setbeamersize{text margin left=1em, text margin right=1em}
-\usepackage[orientation=landscape,size=a0,scale=2]{beamerposter} % size
-\usepackage{fontspec}
-\usepackage[absolute,overlay]{textpos}
+\newcommand{\poster}[1]{
+  \documentclass[t,dvipsnames]{beamer}
+  \setbeamersize{text margin left=1em, text margin right=1em}
+  \usepackage[orientation=landscape,size=a0,scale=2]{beamerposter} % size
+  \usepackage{fontspec}
+  \usepackage{lengthconvert}
+  \usepackage[absolute,overlay]{textpos}
 
-\setsansfont{Arial}
-\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+  \setmainfont{Verdana}
+  
+  \setbeamertemplate{navigation symbols}{} % no navigation on a poster
+  \setbeamercolor*{normal text}{fg=white,bg=black}
+  
+  \begin{document}
+    \begin{frame}
+      %% Content background
+      \begin{textblock*}{0.97\paperwidth}(0.015\paperwidth,0.1\paperheight)
+        \textblockcolor{lightgray} ~ \vspace{0.875\paperheight}
+      \end{textblock*}
+      #1
+    \end{frame}
+  \end{document}
+}
 
-\title[]{Hello world}
-\author[]{One \and Two}
-\date{\today}
+\newcommand{\postertitle}[3]{
+  \begin{textblock*}{\paperwidth}(0ex,0ex)
+    \begin{center}
+      { \vskip1ex \bf \Large #1 } \\[1mm]
+      { \large #2 } \\[1mm]
+      { \large #3 }
+    \end{center}
+  \end{textblock*}
+} 
 
-\begin{document}
-  \begin{frame}
-    %% Title block
-    \begin{textblock*}{\paperwidth}(0cm,0cm)
-      \begin{center}
-        {\huge Hello world!}
-      \end{center}
-    \end{textblock*}
+\newcommand{\convertto}[2]{
+  \newcommand{\converter}{\Convert[unit = #1]{#2}}
+  \directlua{require("spacing").printer("\\converter")}
+}
 
-    %% Column one
-    \begin{textblock*}{0.3\paperwidth}(0.2\paperwidth,0.2\paperwidth)
-      \textblockcolor{red}
-      \vskip3ex
-      \hspace{3ex} Hello world!
-      \vspace{10cm}
-    \end{textblock*}
-    
-  \end{frame}
-\end{document}
+%----------------------------------
+%----------------------------------
+\poster {
+  \title{An informative title that is also catchy}
+  \author{Author One \and Author Two}
+  \date{\today}
+
+  \postertitle \inserttitle \insertauthor \insertdate
+
+  %% Column one
+  \begin{textblock*}{0.3\paperwidth}(0.025\paperwidth,0.115\paperheight)
+    \directlua{tex.print("********************************")}
+    \directlua{tex.print("********************************")}
+  
+    \convertto{mm}{\paperheight}
+  
+    \textblockcolor{black} ~ \vspace{0.8\paperheight}
+  \end{textblock*}
+  
+  %% Column two
+  \begin{textblock*}{0.3\paperwidth}(0.345\paperwidth,0.115\paperheight)
+    \textblockcolor{black} ~ \vspace{0.845\paperheight}
+  \end{textblock*}
+  
+  %% Column three
+  \begin{textblock*}{0.3\paperwidth}(0.665\paperwidth,0.115\paperheight)
+    \textblockcolor{black} ~ \vspace{0.845\paperheight}
+  \end{textblock*}
+
+} % poster

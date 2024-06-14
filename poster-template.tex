@@ -1,51 +1,29 @@
-\documentclass[final,t]{beamer}
-\mode<presentation>{ \usetheme{Berlin} }
+\documentclass[t,dvipsnames]{beamer}
+\setbeamersize{text margin left=1em, text margin right=1em}
+\usepackage[orientation=landscape,size=a0,scale=2]{beamerposter} % size
+\usepackage{fontspec}
+\usepackage[absolute,overlay]{textpos}
 
-\usepackage[orientation=landscape,size=a0,scale=1]{beamerposter}
-\usepackage{textpos}
+\setsansfont{Arial}
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
 
-%----------------------------------
-
-\title[]{ \huge {Awesome title} }
-\author[]{ \large {Author Name \and Author Name} }
-\institute[]{ \Large {Colorado School of Mines} }
+\title[]{Hello world}
+\author[]{One \and Two}
 \date{\today}
 
-\newcommand{\colwidth}{0.31\linewidth }
-\newenvironment{poster}{\document}{\enddocument}
-
-%----------------------------------
-% Body of poster
 \begin{document}
   \begin{frame}
     \maketitle
 
-    \begin{columns}[t]
- 
-      %------------------------------------------
-      % Column one
-      \begin{column}{\colwidth}
-        \begin{block}{Some heading}
-          Finally!
-        \end{block}
-      \end{column}
-      
-      %------------------------------------------
-      % Column two
-      \begin{column}{\colwidth}
-        \begin{block}{Some heading}
-          Some!
-        \end{block}
-      \end{column}
-      
-      %------------------------------------------
-      % Three
-      \begin{column}{\colwidth}
-        \begin{block}{Some heading}
-          Text!
-        \end{block}
-      \end{column}
+    \colorbox{blue!20}{\begin{minipage}[t][0.8\textheight][t]
+        {\dimexpr0.5\textwidth-2\fboxsep-2\fboxrule-5pt\relax}
+        {\Huge Some text }
+    \end{minipage}}\hfill
+    \begin{minipage}[t][0.8\textheight][t]
+      {\dimexpr0.5\textwidth-5pt\relax}
+      { \scriptsize Some question }
+      \[ 1 + 1 = 2 \]
+    \end{minipage}
     
-    \end{columns}
   \end{frame}
 \end{document}

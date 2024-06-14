@@ -13,17 +13,20 @@
 
 \begin{document}
   \begin{frame}
-    \maketitle
+    %% Title block
+    \begin{textblock*}{\paperwidth}(0cm,0cm)
+      \begin{center}
+        Hello world!
+      \end{center}
+    \end{textblock*}
 
-    \colorbox{blue!20}{\begin{minipage}[t][0.8\textheight][t]
-        {\dimexpr0.5\textwidth-2\fboxsep-2\fboxrule-5pt\relax}
-        {\Huge Some text }
-    \end{minipage}}\hfill
-    \begin{minipage}[t][0.8\textheight][t]
-      {\dimexpr0.5\textwidth-5pt\relax}
-      { \scriptsize Some question }
-      \[ 1 + 1 = 2 \]
-    \end{minipage}
+    %% Column one
+    \begin{textblock*}{0.3\paperwidth}(0.2\paperwidth,0.2\paperwidth)
+      \textblockcolor{red}
+      \vskip3ex
+      \hspace{3ex} Hello world!
+      \vspace{10cm}
+    \end{textblock*}
     
   \end{frame}
 \end{document}

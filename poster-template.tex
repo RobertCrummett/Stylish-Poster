@@ -1,36 +1,4 @@
-\newcommand{\poster}[1]{
-  \documentclass[t,dvipsnames]{beamer}
-  \setbeamersize{text margin left=1em, text margin right=1em}
-  \usepackage[orientation=landscape,size=a0,scale=2]{beamerposter} % size
-  \usepackage{fontspec}
-  \usepackage{lengthconvert}
-  \usepackage[absolute,overlay]{textpos}
-
-  \setmainfont{Verdana}
-  
-  \setbeamertemplate{navigation symbols}{} % no navigation on a poster
-  \setbeamercolor*{normal text}{fg=white,bg=black}
-  
-  \begin{document}
-    \begin{frame}
-      %% Content background
-      \begin{textblock*}{0.97\paperwidth}(0.015\paperwidth,0.1\paperheight)
-        \textblockcolor{lightgray} ~ \vspace{0.875\paperheight}
-      \end{textblock*}
-      #1
-    \end{frame}
-  \end{document}
-}
-
-\newcommand{\postertitle}[3]{
-  \begin{textblock*}{\paperwidth}(0ex,0ex)
-    \begin{center}
-      { \vskip1ex \bf \Large #1 } \\[1mm]
-      { \large #2 } \\[1mm]
-      { \large #3 }
-    \end{center}
-  \end{textblock*}
-} 
+\documentclass{cgem-poster}
 
 \newcommand{\convertto}[2]{
   \newcommand{\converter}{\Convert[unit = #1]{#2}}
@@ -38,19 +6,20 @@
 }
 
 %----------------------------------
-%----------------------------------
-\poster {
-  \title{An informative title that is also catchy}
-  \author{Author One \and Author Two}
-  \date{\today}
+% Title section
+\title{An informative title that is also catchy}
+\author{Author One \and Author Two}
+\date{\today}
 
+%----------------------------------
+
+%----------------------------------
+
+\poster {
   \postertitle \inserttitle \insertauthor \insertdate
 
   %% Column one
   \begin{textblock*}{0.3\paperwidth}(0.025\paperwidth,0.115\paperheight)
-    \directlua{tex.print("********************************")}
-    \directlua{tex.print("********************************")}
-  
     \convertto{mm}{\paperheight}
   
     \textblockcolor{black} ~ \vspace{0.8\paperheight}

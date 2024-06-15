@@ -1,24 +1,38 @@
+% CGEM Poster Package
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{cgem-poster}[2024/06/14 CGEM Posters]
 
+%--------------------------------
+% Wraps around beamer and beamerposter
 \LoadClass[t,dvipsnames]{beamer}
 \RequirePackage[orientation=landscape,size=a0,scale=2]{beamerposter} % Size
 
-\RequirePackage{amsmath, amsfonts, amssymb, bm} % Math
-\RequirePackage[backend=biber,style=authoryear-comp]{biblatex}
-\RequirePackage{fontspec}
-\RequirePackage{graphicx}
-\RequirePackage{hyperref}
-\RequirePackage{lengthconvert}
-\RequirePackage[absolute,overlay]{textpos}
-\RequirePackage{xcolor}
+\RequirePackage{amsmath, amsfonts, amssymb, bm} % math
+\RequirePackage[backend=biber,style=authoryear-comp]{biblatex} % bibliography
+\RequirePackage{fontspec} % unicode fonts
+\RequirePackage{graphicx} % graphics
+\RequirePackage{hyperref} % links 
+\RequirePackage[absolute,overlay]{textpos} % textblocks
+\RequirePackage{xcolor} % colors
 
+%--------------------------------
+% Main font
 \setmainfont{Verdana}
 
+% Beamer global settings
 \setbeamersize{text margin left=1em, text margin right=1em}
 \setbeamertemplate{navigation symbols}{} % no navigation on a poster
 \setbeamercolor*{normal text}{fg=white,bg=black}
 
+%--------------------------------
+% Lua functions
+
+% Here, Lua does all the hard lifting
+% All math is sent to Lua, organized,
+% and returned by means of the \luavar
+% function
+
+% Return variable from Lua table
 \newcommand{\luavar}[1]{
   \directlua{
     poster = require("spacing")
@@ -26,6 +40,7 @@
   }
 }
 
+% Set variable in Lua table
 \newcommand{\luaset}[2]{
   \directlua{
     poster = require("spacing")
@@ -33,16 +48,10 @@
   }
 }
 
+%--------------------------------
+% Poster 'namespace'
+% Essentially replaces \begin{document} & \end{document}
 \newcommand{\poster}[1]{
-
-  % Poster background
-  \newcommand{\posterbackground}{
-    \begin{textblock*}
-      {\luavar{background width}}
-      (\luavar{background anchor x},\luavar{background anchor y})
-      \textblockcolor{lightgray}~\vspace{\luavar{background height}}
-    \end{textblock*}
-  }
 
   % Poster title
   \newcommand{\postertitle}[3]{
@@ -56,7 +65,16 @@
     \end{textblock*}
   }
 
-
+  % Poster background
+  \newcommand{\posterbackground}{
+    \begin{textblock*}
+      {\luavar{background width}}
+      (\luavar{background anchor x},\luavar{background anchor y})
+      \textblockcolor{lightgray}~\vspace{\luavar{background height}}
+    \end{textblock*}
+  }
+  
+  % Document wrapper
   \begin{document}
     \begin{frame}
       \posterbackground

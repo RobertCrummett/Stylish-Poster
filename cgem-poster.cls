@@ -19,23 +19,26 @@
 \setbeamertemplate{navigation symbols}{} % no navigation on a poster
 \setbeamercolor*{normal text}{fg=white,bg=black}
 
-\newcommand{\posterbackground}{
-  \begin{textblock*}{0.97\paperwidth}(0.015\paperwidth,0.1\paperheight)
-    \textblockcolor{lightgray} ~ \vspace{0.875\paperheight}
-  \end{textblock*}
-}
-
-
+\newcommand{\anchorx}{0.015cm}
+\newcommand{\anchory}{0.1cm}
 
 \newcommand{\poster}[1]{
 
+  % Poster title
   \newcommand{\postertitle}[3]{
     \begin{textblock*}{\paperwidth}(0ex,0ex)
+      \textblockcolor{black}
       \begin{center}
         { \vskip1ex \bf \Large ##1 } \\[1mm]
         { \large ##2 } \\[1mm]
         { \large ##3 }
       \end{center}
+    \end{textblock*}
+  }
+  % Poster background
+  \newcommand{\posterbackground}{
+    \begin{textblock*}{\luavar{bgwidth}}(\luavar{anchorx},\luavar{anchory})
+      \textblockcolor{lightgray} ~ \vspace{0.875\paperheight}
     \end{textblock*}
   }
 

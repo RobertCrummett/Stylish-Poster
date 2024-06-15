@@ -12,22 +12,37 @@
 \date{\today}
 
 %----------------------------------
+\newcommand{\luavar}[1]{
+  \directlua{
+    sp = require("spacing")
+    tex.print(sp.get("#1"))
+  }
+}
+
+\newcommand{\spacing}[1]{
+  \directlua{
+    sp = require("spacing")
+    sp.bgxy(#1)
+  }
+  \newcommand{\backgroundsize}{#1}
+}
 
 %----------------------------------
+\spacing{2}
 
 \poster {
   \postertitle \inserttitle \insertauthor \insertdate
 
   %% Column one
   \begin{textblock*}{0.3\paperwidth}(0.025\paperwidth,0.115\paperheight)
-    \convertto{mm}{\paperheight}
-  
-    \textblockcolor{black} ~ \vspace{0.8\paperheight}
+    %\convertto{mm}{\paperheight}
+    \textblockcolor{blue} ~ \vspace{0.8\paperheight}
   \end{textblock*}
   
   %% Column two
   \begin{textblock*}{0.3\paperwidth}(0.345\paperwidth,0.115\paperheight)
     \textblockcolor{black} ~ \vspace{0.845\paperheight}
+    \luavar{anchorx}
   \end{textblock*}
   
   %% Column three

@@ -21,7 +21,7 @@
 
 % Beamer global settings
 \setbeamersize{text margin left=1em, text margin right=1em}
-\setbeamertemplate{navigation symbols}{} % no navigation on a poster
+\beamertemplatenavigationsymbolsempty
 \setbeamercolor*{normal text}{fg=white,bg=black}
 
 %--------------------------------
@@ -57,11 +57,11 @@
   \newcommand{\postertitle}[3]{
     \begin{textblock*}{\paperwidth}(0cm,0cm)
       \textblockcolor{black}
-      \begin{center}
+      \begin{minipage}[c][10cm][t]{\paperwidth}
         { \bf \Large ##1 } \\
         { \large ##2 } \\
         { \large ##3 }
-      \end{center}
+      \end{minipage}
     \end{textblock*}
   }
 

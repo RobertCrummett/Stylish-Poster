@@ -3,16 +3,16 @@
 \ProvidesClass{cgem-poster}[2024/06/14 CGEM Posters]
 
 %--------------------------------
-% Wraps around beamer and beamerposter
+% Wraps around beamer and beamer poster
 \LoadClass[t,dvipsnames]{beamer}
 \RequirePackage[orientation=landscape,size=a0,scale=2]{beamerposter} % Size
 
 \RequirePackage{amsmath, amsfonts, amssymb, bm} % math
 \RequirePackage[backend=biber,style=authoryear-comp]{biblatex} % bibliography
-\RequirePackage{fontspec} % unicode fonts
+\RequirePackage{fontspec} % uni code fonts
 \RequirePackage{graphicx} % graphics
 \RequirePackage{hyperref} % links 
-\RequirePackage[absolute,overlay]{textpos} % textblocks
+\RequirePackage[absolute,overlay]{textpos} % text blocks
 \RequirePackage{xcolor} % colors
 
 %--------------------------------
@@ -29,7 +29,7 @@
 
 % Here, Lua does all the hard lifting
 % All math is sent to Lua, organized,
-% and returned by means of the \luavar
+% and returned by means of the \luavar{}
 % function
 
 % Return variable from Lua table

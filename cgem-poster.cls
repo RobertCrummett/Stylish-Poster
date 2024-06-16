@@ -1,4 +1,3 @@
-% CGEM Poster Package
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{cgem-poster}[2024/06/14 CGEM Posters]
 

@@ -5,6 +5,12 @@ local variable_container = {}
 local function titleheight(size)
         local title = {}
         title['height'] = tostring(size) .. 'cm'
+        title['width'] = '\\paperwidth'
+
+        title['top'] = '0cm'
+        title['bottom'] = title['height']
+        title['left'] = '0cm'
+        title['right'] = title['width']
         variable_container['title'] = title
 end
 function_container['titleheight'] = titleheight

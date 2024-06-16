@@ -4,7 +4,7 @@
 %--------------------------------
 % Wraps around beamer and beamer poster
 \LoadClass[t,dvipsnames]{beamer}
-\RequirePackage[orientation=landscape,size=a0,scale=2]{beamerposter} % Size
+\RequirePackage[orientation=landscape, size=a0, scale=2]{beamerposter} % Size
 
 \RequirePackage{amsmath, amsfonts, amssymb, bm} % math
 \RequirePackage[backend=biber,style=authoryear-comp]{biblatex} % bibliography
@@ -14,6 +14,7 @@
 \RequirePackage[absolute,overlay]{textpos} % text blocks
 \RequirePackage{xcolor} % colors
 
+% Import Lua modules
 \directlua{ poster = require("spacing") }
 
 %--------------------------------
@@ -39,37 +40,59 @@
 % Second argument
 % if getting, white space delimited variable name
 % if setting, white space delimited variable name with '=' and value
-\newcommand{\lua}[2]{
-  \directlua{
-    poster.#1("#2")
-  }
-}
+\newcommand{ \lua }[2]{ \directlua{ poster.#1("#2") } }
 
 %--------------------------------
 % Poster 'namespace'
 % Essentially replaces \begin{document} & \end{document}
 \newcommand{\poster}[1]{
   
-  \directlua{ poster.setup() } 
+  % Set up internal variables
+  \directlua{ poster.setup() }
+
   % Poster title
-  \newcommand{\postertitle}[3]{
-    \begin{textblock*}{\paperwidth}(0cm,0cm)
+  \newcommand{ \postertitle }[3]{
+    \begin{textblock*}{ \paperwidth }( 0cm, 0cm )
       \textblockcolor{black}
-      \begin{minipage}[c][\lua{get}{title height}][t]{\paperwidth}
-        \begin{center}
-          { \bf \Large ##1 } \\
-          { \large ##2 } \\
-          { \color{gray}{ \normalsize ##3 } }
-        \end{center}
+      \begin{minipage}[c][\lua{get}{ title height }][t]{ \paperwidth }
       \end{minipage}
+    \end{textblock*}
+ 
+    \begin{textblock*}{ \paperwidth }( 0cm, 0cm )
+      \textblockcolor{black}
+      \begin{center}
+        { \bf \Large ##1 } \\
+        { \large ##2 } \\
+        { \color{gray}{ \normalsize ##3 } }
+      \end{center}
+    \end{textblock*}
+              
+    % CGEM logo
+    \begin{textblock*}{ 0.05\paperwidth }( \lua{get}{ background margin }, 0cm )
+      \textblockcolor{black}
+      \begin{flushleft}
+        \begin{figure}[h]
+          \includegraphics[height=\dimexpr \lua{get}{ internal top } - 1cm \relax]{cgem-logo-dark}
+        \end{figure}
+      \end{flushleft}
+    \end{textblock*}
+
+    % Mines logo
+    \begin{textblock*}{ 0.05\paperwidth }( \dimexpr \paperwidth - 8cm \relax, 0cm )
+      \textblockcolor{black}
+      \begin{flushleft}
+        \begin{figure}[h]
+          \includegraphics[height=\dimexpr \lua{get}{ internal top } - 1cm \relax]{mines-logo-dark}
+        \end{figure}
+      \end{flushleft}
     \end{textblock*}
   }
 
   % Poster background
-  \newcommand{\posterbackground}{
+  \newcommand{ \posterbackground }{
     \begin{textblock*}
-      {\lua{get}{background width}}
-      (\lua{get}{background anchor x},\lua{get}{background anchor y})
+      { \lua{get}{background width} }
+      ( \lua{get}{background anchor x}, \lua{get}{background anchor y} )
       \textblockcolor{lightgray}~\vspace{\lua{get}{background height}}
     \end{textblock*}
   }

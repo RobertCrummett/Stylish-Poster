@@ -1,6 +1,5 @@
 \documentclass{cgem-poster}
-\usepackage[base]{babel}
-\usepackage{lipsum}
+\graphicspath{{Logo/}}
 
 %----------------------------------
 % Title section
@@ -28,18 +27,24 @@
 
   % Column one background box
   \begin{textblock*}{\colwidth}
-    (\lua{get}{internal margin left}, \lua{get}{internal margin top})
+    ( \lua{get}{internal margin left}, \lua{get}{internal margin top} )
     \textblockcolor{black}
-    \begin{minipage}[t][\lua{get}{internal margin height}][t]{\colwidth}\end{minipage}
+    \begin{minipage}[t][ \lua{get}{ internal margin height } ][t]{\colwidth} \end{minipage}
   \end{textblock*}
 
   \begin{textblock*}{\colwidth}
-    (\lua{get}{internal margin left}, \lua{get}{internal margin top})
+    ( \lua{get}{internal margin left}, \lua{get}{internal margin top} ) 
     \textblockcolor{black}
     \begin{minipage}[t]{\colwidth}
       \begin{center}
         \large Hello World
       \end{center}
+      
+      % Mines logo
+      \begin{figure}[h]
+        \includegraphics[width=0.5\textwidth]{mines-logo-dark}
+      \end{figure}
+
     \end{minipage}
   \end{textblock*}
 

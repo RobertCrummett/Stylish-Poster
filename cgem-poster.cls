@@ -15,6 +15,8 @@
 \RequirePackage[absolute,overlay]{textpos} % text blocks
 \RequirePackage{xcolor} % colors
 
+\directlua{ poster = require("spacing") }
+
 %--------------------------------
 % Main font
 \setmainfont{Verdana}
@@ -40,7 +42,6 @@
 % if setting, white space delimited variable name with '=' and value
 \newcommand{\lua}[2]{
   \directlua{
-    poster = require("spacing")
     poster.#1("#2")
   }
 }
@@ -49,15 +50,18 @@
 % Poster 'namespace'
 % Essentially replaces \begin{document} & \end{document}
 \newcommand{\poster}[1]{
-
+  
+  \directlua{ poster.setup() } 
   % Poster title
   \newcommand{\postertitle}[3]{
     \begin{textblock*}{\paperwidth}(0cm,0cm)
       \textblockcolor{black}
-      \begin{minipage}[c][10cm][t]{\paperwidth}
-        { \bf \Large ##1 } \\
-        { \large ##2 } \\
-        { \large ##3 }
+      \begin{minipage}[c][\lua{get}{title height}][t]{\paperwidth}
+        \begin{center}
+          { \bf \Large ##1 } \\
+          { \large ##2 } \\
+          { \color{gray}{ \normalsize ##3 } }
+        \end{center}
       \end{minipage}
     \end{textblock*}
   }

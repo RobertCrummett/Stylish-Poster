@@ -1,14 +1,23 @@
 local function_container = {}
 local variable_container = {}
 
--- Compute Background Params
+-- Compute title dimensions
+local function titleheight(size)
+        local title = {}
+        title['height'] = tostring(size) .. 'cm'
+        variable_container['title'] = title
+end
+function_container['titleheight'] = titleheight
+
+-- Compute background dimensions
 local function backgroundmargin(margin_size)
         -- Local tables for temporary storage
         local size = tonumber(margin_size)
         local background = {}
         local anchor = {}
-        anchor["x"] = tostring(size) .. "cm"
-        anchor["y"] = tostring(size) .. "cm"
+        background["margin"] = tostring(size) .. "cm"
+        anchor["x"] = background["margin"]
+        anchor["y"] = background["margin"]
         background["width"]  = "\\dimexpr \\paperwidth - " .. tostring(2 * size) .. "cm \\relax"
         background["height"] = "\\dimexpr \\paperheight - ".. tostring(2 * size) .. "cm \\relax"
         -- Save background variables into global table
@@ -16,7 +25,6 @@ local function backgroundmargin(margin_size)
         variable_container["background"] = background
 end
 function_container['backgroundmargin'] = backgroundmargin
-
 
 -- Split strings by delimiter -- default is white space
 local function split_string(input_string, delim)
@@ -36,6 +44,36 @@ local function join_string(input_tab)
         end
         return output
 end
+
+-- Set up variables at runtime
+local function setup_at_runtime()
+        -- Get internal dimensions of border
+        local background_margin = variable_container["background"]["margin"]
+        local title_height = variable_container["title"]["height"]
+        local background_x = variable_container["background"]["anchor"]["x"]
+        local background_w = variable_container["background"]["width"]
+
+        local internal = {}
+        internal["top"] = title_height
+        internal["bottom"] = "\\dimexpr \\paperheight - " .. background_margin .. " \\relax"
+        internal["left"] = background_x
+        internal["right"] = "\\dimexpr \\paperwidth - " .. background_x .. " \\relax"
+        internal["height"] = "\\dimexpr \\paperheight - " .. title_height .. " - " .. background_margin .. " \\relax"
+        internal["width"] = background_w
+        
+        local internal_margin = {}
+        internal_margin["value"] = background_margin
+        internal_margin["top"] = "\\dimexpr " .. internal["top"] .. " + " .. internal_margin["value"] .. " \\relax"
+        internal_margin["bottom"] = "\\dimexpr " .. internal["bottom"] .. " - " .. internal_margin["value"] .. " \\relax"
+        internal_margin["right"] = "\\dimexpr " .. internal["right"] .. " - " .. internal_margin["value"] .. " \\relax"
+        internal_margin["left"] = "\\dimexpr " .. internal["left"] .. " + " .. internal_margin["value"] .. " \\relax"
+        internal_margin["height"] = "\\dimexpr " .. internal_margin["bottom"] .. " - " .. internal_margin["top"] .. " \\relax"
+        internal_margin["width"] = "\\dimexpr " .. internal_margin["right"] .. " - " .. internal_margin["left"] .. " \\relax"
+        
+        internal["margin"] = internal_margin
+        variable_container["internal"] = internal
+
+end     
 
 -- Get variables from 'container' of all variables
 local function get(key)
@@ -65,4 +103,5 @@ local function set(argument)
 end
 
 return {get = get,
-        set = set}
+        set = set,
+        setup = setup_at_runtime}

@@ -12,6 +12,7 @@
 %----------------------------------
 % Set the poster text box alignment/geometry
 \lua{set}{ background margin = 1 }
+\lua{set}{ title height = 8 }
 
 %----------------------------------
 % Build the main poster body
@@ -20,19 +21,41 @@
   % Set up the upper title box
   \postertitle \inserttitle \insertauthor \insertdate
 
-  %% Column two
-  \begin{textblock*}{0.3\paperwidth}(0.345\paperwidth,0.115\paperheight)
-    \textblockcolor{pink}
-    \begin{minipage}[t][0.8\paperheight][t]{0.3\pagewidth}
+  % Three major columns
+  \newcommand{\colwidth}{
+    \dimexpr ( \lua{get}{internal margin width} -
+      (\lua{get}{internal margin value} * 2) ) / 3 \relax
+  }
+
+  % Column one background box
+  \begin{textblock*}{\colwidth}
+    (\lua{get}{internal margin left}, \lua{get}{internal margin top})
+    \textblockcolor{black}
+    \begin{minipage}[t][\lua{get}{internal margin height}][t]{\colwidth}\end{minipage}
+  \end{textblock*}
+
+  \begin{textblock*}{\colwidth}
+    (\lua{get}{internal margin left}, \lua{get}{internal margin top})
+    \textblockcolor{black}
+    \begin{minipage}[t]{\colwidth}
       \begin{center}
-        Hello world
+        \large Hello World
       \end{center}
     \end{minipage}
   \end{textblock*}
-  
-  %% Column three
-  \begin{textblock*}{0.3\paperwidth}(0.665\paperwidth,0.115\paperheight)
-    \textblockcolor{black}~\vspace{0.845\paperheight}
+
+  % Column two background box
+  \begin{textblock*}{\colwidth}
+    (\dimexpr \lua{get}{internal margin left} + \colwidth + \lua{get}{internal margin value} \relax, \lua{get}{internal margin top})
+    \textblockcolor{black}
+    \begin{minipage}[t][\lua{get}{internal margin height}][t]{\colwidth}\end{minipage}
   \end{textblock*}
 
+  % Column three background box
+  \begin{textblock*}{\colwidth}
+    (\dimexpr \lua{get}{internal margin left} + (\colwidth * 2) + (\lua{get}{internal margin value} * 2)\relax, \lua{get}{internal margin top})
+    \textblockcolor{black}
+    \begin{minipage}[t][\lua{get}{internal margin height}][t]{\colwidth}\end{minipage}
+  \end{textblock*}
+ 
 } % poster

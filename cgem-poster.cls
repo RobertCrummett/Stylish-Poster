@@ -32,19 +32,16 @@
 % and returned by means of the \luavar{}
 % function
 
-% Return variable from Lua table
-\newcommand{\luavar}[1]{
+% Mutator
+% First argument:
+% 'get' or 'set' -- indicates whether to get or set value
+% Second argument
+% if getting, white space delimited variable name
+% if setting, white space delimited variable name with '=' and value
+\newcommand{\lua}[2]{
   \directlua{
     poster = require("spacing")
-    tex.print(poster.get("#1"))
-  }
-}
-
-% Set variable in Lua table
-\newcommand{\luaset}[2]{
-  \directlua{
-    poster = require("spacing")
-    poster.#1(#2)
+    poster.#1("#2")
   }
 }
 
@@ -68,9 +65,9 @@
   % Poster background
   \newcommand{\posterbackground}{
     \begin{textblock*}
-      {\luavar{background width}}
-      (\luavar{background anchor x},\luavar{background anchor y})
-      \textblockcolor{lightgray}~\vspace{\luavar{background height}}
+      {\lua{get}{background width}}
+      (\lua{get}{background anchor x},\lua{get}{background anchor y})
+      \textblockcolor{lightgray}~\vspace{\lua{get}{background height}}
     \end{textblock*}
   }
   

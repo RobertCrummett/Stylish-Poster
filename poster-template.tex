@@ -11,7 +11,7 @@
 
 %----------------------------------
 % Set the poster text box alignment/geometry
-\luaset{background}{1}
+\lua{set}{ background margin = 1 }
 
 %----------------------------------
 % Build the main poster body
@@ -20,15 +20,14 @@
   % Set up the upper title box
   \postertitle \inserttitle \insertauthor \insertdate
 
-  %% Column one
-  \colorbox{pink}{
-  \begin{minipage}[c][33cm][c]{33cm}
-    \large \lipsum[1]
-  \end{minipage}}
-  
   %% Column two
   \begin{textblock*}{0.3\paperwidth}(0.345\paperwidth,0.115\paperheight)
-    \textblockcolor{black}~\vspace{0.845\paperheight}
+    \textblockcolor{pink}
+    \begin{minipage}[t][0.8\paperheight][t]{0.3\pagewidth}
+      \begin{center}
+        Hello world
+      \end{center}
+    \end{minipage}
   \end{textblock*}
   
   %% Column three

@@ -70,17 +70,17 @@
     \end{textblock*}
     %             
     % CGEM logo
-    \begin{textblock*}{ 0.1\paperwidth }( \lua{get}{ background margin }, 0mm)
+    \begin{textblock*}{ 0.01\paperwidth }(\dimexpr\lua{get}{ background margin }+5mm\relax,5mm)
       \textblockcolor{black}
       \centering
-      \includegraphics[height=\lua{get}{title height}]{cgem-logo-dark}
+      \includegraphics[height=\dimexpr\lua{get}{title height}-10mm\relax]{cgem-logo-dark}
       \end{textblock*}
     
     % Mines logo
-    \begin{textblock*}{ 0.1\paperwidth }( \dimexpr \lua{get}{ background width } - 9cm \relax, 0mm)
+    \begin{textblock*}{ 0.01\paperwidth }( \dimexpr\lua{get}{ background width }-7cm\relax,5mm)
       \textblockcolor{black}
       \centering
-      \includegraphics[height=\lua{get}{title height}]{mines-logo-dark}
+      \includegraphics[height=\dimexpr\lua{get}{title height}-10mm\relax]{mines-logo-dark}
       \end{textblock*}
     }
 

@@ -1,6 +1,15 @@
 local function_container = {}
 local variable_container = {}
 
+-- Compute logo margin
+local function logomargin(size)
+        local logo = {}
+        local anchor = {}
+        logo['margin'] = size .. 'cm'
+        logo['anchor'] = anchor
+end
+function_container['logomargin'] = logomargin
+
 -- Compute title dimensions
 local function titleheight(size)
         local title = {}
@@ -76,9 +85,9 @@ local function setup_at_runtime()
         internal_margin["height"] = "\\dimexpr " .. internal_margin["bottom"] .. " - " .. internal_margin["top"] .. " \\relax"
         internal_margin["width"] = "\\dimexpr " .. internal_margin["right"] .. " - " .. internal_margin["left"] .. " \\relax"
         
+        
         internal["margin"] = internal_margin
         variable_container["internal"] = internal
-
 end     
 
 -- Get variables from 'container' of all variables

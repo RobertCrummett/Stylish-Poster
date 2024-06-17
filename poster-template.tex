@@ -9,7 +9,8 @@
 
 %----------------------------------
 % Set the poster text box alignment/geometry
-\lua{set}{ background margin = 1 }
+\lua{set}{ background margin = 0.75 }
+\lua{set}{ logo margin = 0.75 }
 \lua{set}{ title height = 8 }
 
 %----------------------------------
@@ -20,9 +21,9 @@
   \postertitle \inserttitle \insertauthor \insertdate
 
   % Three major columns
-  \newcommand{\colwidth}{
-    \dimexpr ( \lua{get}{internal margin width} -
-      (\lua{get}{internal margin value} * 2) ) / 3 \relax
+  \newcommand{\colwidth}{%
+    \dimexpr(\lua{get}{internal margin width}-
+      (\lua{get}{internal margin value}*2))/3\relax%
   }
 
   % Column one background box
@@ -32,14 +33,21 @@
     \begin{minipage}[t][ \lua{get}{ internal margin height } ][t]{\colwidth} \end{minipage}
   \end{textblock*}
 
-  \begin{textblock*}{\colwidth}
-    ( \lua{get}{internal margin left}, \lua{get}{internal margin top} ) 
+  % Introduction -- column one
+  \begin{textblock*}{\dimexpr\colwidth-2cm\relax}
+    (\dimexpr\lua{get}{internal margin left}+1cm\relax,
+      \dimexpr\lua{get}{internal margin top}+1cm\relax) 
     \textblockcolor{black}
-    \begin{minipage}[t]{\colwidth}
+    \begin{minipage}[t]{\dimexpr\colwidth-2cm\relax}
       \begin{center}
-        \large Hello World
+        \textbf{\large Introduction}
       \end{center}
-      
+      This is my first paragraph.
+      This is my first paragraph.
+      This is my first paragraph.
+      This is my first paragraph.
+      This is my first paragraph.
+
     \end{minipage}
   \end{textblock*}
 
@@ -49,6 +57,28 @@
     \textblockcolor{black}
     \begin{minipage}[t][\lua{get}{internal margin height}][t]{\colwidth}\end{minipage}
   \end{textblock*}
+
+  \begin{textblock*}{\dimexpr\colwidth-2cm\relax}
+    (\dimexpr\lua{get}{internal margin left}+\colwidth+\lua{get}{internal margin value}+1cm\relax,
+    \dimexpr\lua{get}{internal margin top}+1cm\relax)
+    \textblockcolor{black}
+    \begin{minipage}{\dimexpr\colwidth-2cm\relax}
+      \begin{center}
+        \textbf{\large Methodology}
+      \end{center}
+      Hello world.
+      Hello world.
+      Hello world.
+      Hello world.
+      Hello world.
+      Hello world.
+      Hello world.
+      Hello world.
+      Hello world.
+
+    \end{minipage}
+  \end{textblock*}
+
 
   % Column three background box
   \begin{textblock*}{\colwidth}

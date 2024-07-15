@@ -2,7 +2,7 @@
 -- Wonderful idea by Skuost, Dec 5 2023
 -- https://tex.stackexchange.com/questions/192917/include-all-bib-files-in-one-directory-to-a-bibliography
 
--- Function checks whether directory exists or not
+-- Checks whether directory exists or not
 local function isDir(name)
 	if type(name) ~= "string" then
 		return false
@@ -14,7 +14,7 @@ local function isDir(name)
 end
 
 
--- Lua function to collect *.bib files in Bib directory
+-- Collect *.bib files in Bib directory
 local function findBibFiles(folder)
 	local files = {}
 	local lfs = require("lfs")
@@ -28,7 +28,7 @@ local function findBibFiles(folder)
 	return files
 end
 
--- Function assembles bibliography
+-- Assembles bibliography
 local function printBibResources(folder)
 	-- Get all bib files in folder
 	local files = findBibFiles(folder)

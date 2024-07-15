@@ -13,7 +13,9 @@
 %
 %---------------------------------------
 \documentclass[dark]{cgem-poster}
-\usepackage{lipsum}
+
+% Bibliography folder path
+\bibliographypath{Bib}
 
 % Paths to images
 \graphicspath{{Logo/}}
@@ -59,8 +61,9 @@
       \par
       \vspace{5mm}
       % Poster authors and affilitations
+      \colorlet{PosterSubtitleColor}{ZeroColor!70}
       \normalsize
-      { \color{ZeroColor!70}
+      { \color{PosterSubtitleColor}
         \PosterFirstAuthor{}* \& \PosterSecondAuthor{}
         \par
         \small
@@ -99,8 +102,9 @@
   \newcommand{\PosterBackgroundHeight}{\dimexpr (\pageheight - \PosterBackgroundTop - \PosterOuterMarginSize)\relax}
   
   % Outer margin
+  \colorlet{PosterBackgroundColor}{ZeroColor!90}
   \begin{textblock*}{\PosterBackgroundWidth{}}(\PosterBackgroundLeft{},\PosterBackgroundTop{})
-    \textblockcolor{ZeroColor!90}
+    \textblockcolor{PosterBackgroundColor}
     \begin{minipage}[t][\PosterBackgroundHeight{}][t]{\PosterBackgroundWidth{}}
     \end{minipage}
   \end{textblock*}
@@ -156,6 +160,9 @@
     \end{minipage}
   \end{textblock*}
 
+  % Horizontal bar
+  \newcommand{\PosterColumnHorizontalBar}{ \textcolor{PosterBackgroundColor}{\noindent\makebox[\linewidth]{\rule{\PosterColumnWidth}{\PosterInnerMarginSize}}} }
+
   % END POSTER BACKGROUND SECTION
   %---------------------------------------
   % BEGIN POSTER CONTENT SECTION
@@ -174,22 +181,102 @@
     \textblockcolor{ZeroColor}
     \begin{minipage}[t][\PosterColumnOneTextHeight{}][t]{\PosterColumnOneTextWidth{}}
       \vspace{5mm}
+      % Introduction section
       \begin{center}
         \large
-        \textbf{Introduction}
+        \textbf{Abstract / Introduction}
       \end{center}
-      \vspace{5mm}
-      \small
-      \lipsum[1]
-      \vspace{1cm}
 
-      \begin{center}
-        \large
-        \textbf{Another Section}
-      \end{center}
       \vspace{5mm}
       \small
-      \lipsum[2]
+      This paragraph should briefly break down what you are doing. %
+      What has been done, your argument, and how you plan to do this.
+      
+      \vspace{7mm}
+      Recommended reading \cite{Landes1958}
+
+      % Methods section
+      \vspace{8cm}
+      \begin{center}
+        \large
+        \textbf{Methods}
+      \end{center}
+
+      \vspace{5mm}
+      \small
+      Short and simple is key. Math can be put here. %
+      This should naturally follow your argument and outline from the introduction.
+
+      \vspace{-2cm}
+      \large
+      \begin{equation*}
+        \mathit{E = m c^\mathrm{2}}
+      \end{equation*}
+
+      \vspace{1cm}
+      \small
+      If you are not standing at your poster, could people follow your argument? %
+      Is the meaning if each equation clear?
+
+    \end{minipage}
+  \end{textblock*}
+
+  % Column two text block dimensions
+  \newcommand{\PosterColumnTwoTextLeft}{\dimexpr (\PosterColumnTwoLeft + \PosterTextMarginSize)\relax}
+  \newcommand{\PosterColumnTwoTextWidth}{\dimexpr (\PosterColumnTwoWidth - 2\PosterTextMarginSize)\relax}
+  \newcommand{\PosterColumnTwoTextTop}{\dimexpr (\PosterColumnTwoTop + \PosterTextMarginSize)\relax}
+  \newcommand{\PosterColumnTwoTextHeight}{\dimexpr (\PosterColumnTwoHeight - 2\PosterTextMarginSize)\relax}
+
+  % Column two text 
+  \begin{textblock*}{\PosterColumnTwoTextWidth{}}(\PosterColumnTwoTextLeft{},\PosterColumnTwoTextTop{})
+    \textblockcolor{ZeroColor}
+    \begin{minipage}[t][\PosterColumnTwoTextHeight{}][t]{\PosterColumnTwoTextWidth{}}
+      \vspace{5mm}
+      % Introduction section
+      \begin{center}
+        \large
+        \textbf{Results}
+      \end{center}
+
+      \vspace{5mm}
+      \small
+      Show what you have done here.
+
+    \end{minipage}
+  \end{textblock*}
+
+  % Column three text block dimensions
+  \newcommand{\PosterColumnThreeTextLeft}{\dimexpr (\PosterColumnThreeLeft + \PosterTextMarginSize)\relax}
+  \newcommand{\PosterColumnThreeTextWidth}{\dimexpr (\PosterColumnThreeWidth - 2\PosterTextMarginSize)\relax}
+  \newcommand{\PosterColumnThreeTextTop}{\dimexpr (\PosterColumnThreeTop + \PosterTextMarginSize)\relax}
+  \newcommand{\PosterColumnThreeTextHeight}{\dimexpr (\PosterColumnThreeHeight - 2\PosterTextMarginSize)\relax}
+
+  % Column two text 
+  \begin{textblock*}{\PosterColumnThreeTextWidth{}}(\PosterColumnThreeTextLeft{},\PosterColumnThreeTextTop{})
+    \textblockcolor{ZeroColor}
+    \begin{minipage}[t][\PosterColumnThreeTextHeight{}][t]{\PosterColumnThreeTextWidth{}}
+      \vspace{5mm}
+      % Introduction section
+      \begin{center}
+        \large
+        \textbf{Discussion}
+      \end{center}
+
+      \vspace{5mm}
+      \small
+      Show what you have done here.
+
+      \vspace{51.5cm}
+      \PosterColumnHorizontalBar{}
+      % Bibliography section
+      \begin{center}
+        \large
+        \textbf{References}
+      \end{center}
+
+      \renewcommand*{\bibfont}{\small}
+      \printbibliography
+    
     \end{minipage}
   \end{textblock*}
 

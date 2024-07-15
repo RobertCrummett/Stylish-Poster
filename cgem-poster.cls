@@ -11,8 +11,9 @@
 \RequirePackage[export]{adjustbox}
 \RequirePackage{amsmath, amsfonts, amssymb} % Math
 \RequirePackage{array} % array stretch
-\RequirePackage{bm}
-\RequirePackage[backend=biber, style=authoryear-comp]{biblatex} % Bibliography, change style if you prefer
+\RequirePackage[backend=biber,style=ieee]{biblatex} % Bibliography, change style if you prefer
+\RequirePackage{bm} % bold math
+\RequirePackage{exscale}
 \RequirePackage{fontspec} % Fonts --- If this fails to compile, try XeLaTeX or LuaTeX
 \RequirePackage{hyperref} % Links
 \RequirePackage{longtable} % explanation of equations table
@@ -57,9 +58,9 @@
 % Hyperlink settings
 \hypersetup{
   colorlinks=true,
-  citecolor=ThirdColor,
+  citecolor=SecondColor,
   linkcolor=SecondColor,
-  urlcolor=ThirdColor,
+  urlcolor=SecondColor,
 } % Link to corresponding author
 
 % Background and default text color
@@ -69,11 +70,23 @@
 % Turn off Beamer navigation buttons
 \beamertemplatenavigationsymbolsempty
 
-% Page numbering
-% \setbeamertemplate{footline}{
-%   \begin{flushright}
-%     \textcolor{SecondColor}{\large \insertframenumber}
-%     \hspace{1mm}
-%     \vspace{-1mm}
-%   \end{flushright}
-% }
+%----------------------------------------
+% Bibliography
+
+% Linking bibliography folder
+\newcommand{\bibliographypath}[1]{ \directlua{ cgembib.make("#1") } }
+
+\DeclareFieldFormat{labelnumberwidth}{[\textcolor{SecondColor}{#1}]}
+
+% Bibliography appearance
+\setbeamercolor*{bibliography entry title}{fg=FirstColor}
+\setbeamercolor*{bibliography entry location}{fg=FirstColor}
+\setbeamercolor*{bibliography entry note}{fg=FirstColor}
+\setbeamercolor*{bibliography entry author}{fg=FirstColor}
+\setbeamercolor*{bibliography item}{fg=FirstColor}
+
+% Inline citation settings
+\renewcommand*{\citesetup}{
+  \color{FirstColor}
+  \biburlsetup
+}

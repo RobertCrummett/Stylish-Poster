@@ -18,12 +18,13 @@
 \bibliographypath{Bib}
 
 % Paths to images
-\graphicspath{{Logo/}}
+\graphicspath{{Fig/}{Logo/}}
 
 %---------------------------------------
 % Poster specific macros
 \newcommand{\PosterTitle}{Poster Title --- Yaoguo Does Not Like Corny}
 \newcommand{\PosterFirstAuthor}{R. Nate Crummett}
+\newcommand{\PosterFirstAuthorContact}{robert\_crummett@mines.edu}
 \newcommand{\PosterSecondAuthor}{Yaoguo Li}
 \newcommand{\PosterAffiliationCGEM}{Center for Gravity, Electrical \& Magnetic Studies}
 \newcommand{\PosterAffiliationMines}{Colorado School of Mines}
@@ -31,6 +32,8 @@
 
 %---------------------------------------
 % Poster
+\colorlet{PosterSubtitleColor}{ZeroColor!70}
+\colorlet{PosterBackgroundColor}{ZeroColor!90}
 
 \begin{document}
 
@@ -61,7 +64,6 @@
       \par
       \vspace{5mm}
       % Poster authors and affilitations
-      \colorlet{PosterSubtitleColor}{ZeroColor!70}
       \normalsize
       { \color{PosterSubtitleColor}
         \PosterFirstAuthor{}* \& \PosterSecondAuthor{}
@@ -78,6 +80,7 @@
   \begin{textblock*}{\titleheight{}}(0.01\pagewidth,0cm)
     \textblockcolor{ZeroColor}
     \centering
+    \hspace*{-20.72449pt}
     \includegraphics[height=\titleheight{}]{\LogoFileMines}
   \end{textblock*}
   
@@ -86,6 +89,16 @@
     \textblockcolor{ZeroColor}
     \centering
     \includegraphics[height=\PosterCGEMLogoHeight{}]{\LogoFileCGEM}
+  \end{textblock*}
+
+  % Contact information
+  \begin{textblock*}{0.2\pagewidth}(0.869\pagewidth,0.991\pageheight)
+    \textblockcolor{ZeroColor}
+    \tiny
+    { \color{PosterSubtitleColor}
+      *Contact: %
+      \PosterFirstAuthorContact{}
+    }
   \end{textblock*}
   
   % END POSTER TITLE SECTION
@@ -102,7 +115,6 @@
   \newcommand{\PosterBackgroundHeight}{\dimexpr (\pageheight - \PosterBackgroundTop - \PosterOuterMarginSize)\relax}
   
   % Outer margin
-  \colorlet{PosterBackgroundColor}{ZeroColor!90}
   \begin{textblock*}{\PosterBackgroundWidth{}}(\PosterBackgroundLeft{},\PosterBackgroundTop{})
     \textblockcolor{PosterBackgroundColor}
     \begin{minipage}[t][\PosterBackgroundHeight{}][t]{\PosterBackgroundWidth{}}
@@ -232,7 +244,7 @@
     \textblockcolor{ZeroColor}
     \begin{minipage}[t][\PosterColumnTwoTextHeight{}][t]{\PosterColumnTwoTextWidth{}}
       \vspace{5mm}
-      % Introduction section
+      % Results section
       \begin{center}
         \large
         \textbf{Results}
@@ -241,6 +253,19 @@
       \vspace{5mm}
       \small
       Show what you have done here.
+
+      \vspace{20cm}
+      % Including figures
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.95\PosterColumnTwoTextWidth{}]{example}
+      \end{figure}
+
+      \vspace{1cm}
+      It is easy to include figures! %
+      Make sure you do not have odd edge artifacts like this one has. %
+      Because the image can be re-sized, do not include text directly on your figures. %
+      Instead, place the text on afterwards in \TeX{}.
 
     \end{minipage}
   \end{textblock*}
@@ -251,12 +276,12 @@
   \newcommand{\PosterColumnThreeTextTop}{\dimexpr (\PosterColumnThreeTop + \PosterTextMarginSize)\relax}
   \newcommand{\PosterColumnThreeTextHeight}{\dimexpr (\PosterColumnThreeHeight - 2\PosterTextMarginSize)\relax}
 
-  % Column two text 
+  % Column three text 
   \begin{textblock*}{\PosterColumnThreeTextWidth{}}(\PosterColumnThreeTextLeft{},\PosterColumnThreeTextTop{})
     \textblockcolor{ZeroColor}
     \begin{minipage}[t][\PosterColumnThreeTextHeight{}][t]{\PosterColumnThreeTextWidth{}}
       \vspace{5mm}
-      % Introduction section
+      % Discussion section
       \begin{center}
         \large
         \textbf{Discussion}
@@ -264,9 +289,10 @@
 
       \vspace{5mm}
       \small
-      Show what you have done here.
+      Explain what you have done here. %
+      Successes. Failures. Open questions?
 
-      \vspace{51.5cm}
+      \vspace{50cm}
       \PosterColumnHorizontalBar{}
       % Bibliography section
       \begin{center}

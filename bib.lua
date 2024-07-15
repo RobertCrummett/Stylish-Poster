@@ -4,11 +4,16 @@
 
 -- Checks whether directory exists or not
 local function isDir(name)
+    -- name must be a string input
 	if type(name) ~= "string" then
 		return false
 	end
+    -- Save current location
+    local lfs = require("lfs")
 	local cd = lfs.currentdir()
+    -- Move to name
 	local is = lfs.chdir(name) and true or false
+    -- Return to original location
 	lfs.chdir(cd)
 	return is
 end
@@ -18,7 +23,9 @@ end
 local function findBibFiles(folder)
 	local files = {}
 	local lfs = require("lfs")
+    -- Confirm that folder is a directory
 	if isDir(folder) then
+        -- Save bibliography files in folder
 		for file in lfs.dir(folder) do
 			if file:match("%.bib$") then
 				table.insert(files, folder .. "/" .. file)

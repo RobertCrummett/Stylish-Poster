@@ -1,3 +1,3 @@
 ## CGEM Beamerposter Template
 
-![Example poster](example.png)
+![Example poster](Doc/example.png)

@@ -12,4 +12,12 @@ doc: $(target)
 $(target): $(source) cgem-poster.cls bib.lua
 	latexmk -pdflua $<
 
-.PHONY: all pdf doc
+clean:
+	latexmk -C -f $(target)
+
+purge: clean
+	rm -f Bib/
+	rm -f Fig/
+	rm -f README.markdown
+
+.PHONY: all pdf doc clean purge

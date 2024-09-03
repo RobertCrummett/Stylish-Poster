@@ -1,3 +1,3 @@
 ## CGEM Beamerposter Template
 
-![example](https://github.com/user-attachments/assets/4dc393a4-6167-4599-9eba-d95d25df2626)
+![example](https://github.com/user-attachments/assets/124589a3-0d9c-4a18-954d-8a27116f8edb)

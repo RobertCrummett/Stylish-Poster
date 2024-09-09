@@ -39,6 +39,10 @@
   \colorlet{FirstColor}{white}
   \colorlet{SecondColor}{cgemblue}
   \colorlet{ThirdColor}{cgemblue!40!red}
+
+  \colorlet{PosterSubtitleColor}{ZeroColor!50}
+  \colorlet{PosterBackgroundColor}{ZeroColor!80}
+
   \newcommand{\LogoFileCGEM}{cgem-logo-dark}
   \newcommand{\LogoFileMines}{mines-logo-dark}
 }
@@ -47,6 +51,10 @@
   \colorlet{FirstColor}{black}
   \colorlet{SecondColor}{pres-blue}
   \colorlet{ThirdColor}{pres-red}
+
+  \colorlet{PosterSubtitleColor}{FirstColor!80}
+  \colorlet{PosterBackgroundColor}{FirstColor!30}
+
   \newcommand{\LogoFileCGEM}{cgem-logo-light}
   \newcommand{\LogoFileMines}{mines-logo-light}
 }
